@@ -1,1 +1,4 @@
 #!/bin/bash
+# Mappen ska bevakas 
+DOWNLOADS="$HOME/Hämtningar"
+echo "dlorg bevakar: $DOWNLOADS"
