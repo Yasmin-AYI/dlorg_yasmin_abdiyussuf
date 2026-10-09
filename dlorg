@@ -2,3 +2,26 @@
 # Mappen ska bevakas 
 DOWNLOADS="$HOME/Hämtningar"
 echo "dlorg bevakar: $DOWNLOADS"
+# Flyttar en fil till rätt mapp utifrån filändelsen
+sort_file() {
+    local file="$1"
+    local folder
+
+    case "$file" in
+        *.pdf) folder="pdfs" ;;
+        *.jpg|*.jpeg|*.png|*.gif) folder="images" ;;
+        *.txt|*.md) folder="text" ;;
+        *.doc|*.docx|*.odt) folder="docs" ;;
+        *.mp4|*.mkv|*.mov) folder="videos" ;;
+        *.mp3|*.wav) folder="music" ;;
+        *.zip|*.tar|*.gz) folder="archives" ;;
+        *) folder="other" ;;
+    esac
+
+    mkdir -p "$DOWNLOADS/$folder"
+    mv "$DOWNLOADS/$file" "$DOWNLOADS/$folder/"
+    echo "Flyttade $file till $folder"
+}
+
+# Testa funktionen
+sort_file "test.pdf"
